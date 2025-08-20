@@ -1,67 +1,98 @@
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="style.css" rel="stylesheet">
-    <title>塚本直樹のポートフォリオ</title>
-  </head>
-  <body>
-    <h1>塚本直樹のポートフォリオ</h1>
-  <img src="profile-photo.jpg">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>シンプルなWebページ</title>
     
-    <h2>About</h2>
-    <p>
-      IT・宇宙ジャーナリスト／YouTuber／NGO「ミャンマーキッズプロジェクト」<br>
-    </p>
+    <style>
+        /* ページ全体の基本的なスタイル */
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center; /* 水平方向の中央揃え */
+            align-items: center;    /* 垂直方向の中央揃え */
+            height: 100vh;          /* 画面の高さいっぱいに表示 */
+            margin: 0;
+            background-color: #f0f0f0; /* 背景色 */
+        }
 
-    <h3>Profile</h3>
-    <ul>
-      <li>塚本直樹</li>
-      <li>東京</li>
-      <li>得意領域（報道、動画作成、人道支援）</li>
-    </ul>
+        /* コンテンツをまとめるコンテナのスタイル */
+        .container {
+            text-align: center;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
 
-    <h3>Skills</h3>
-    <table>
-      <tr>
-        <th>OS</th>
-        <td>macOS, iOS など</td>
-      </tr>
-      <tr>
-        <th>Engine, Frameworks</th>
-        <td>Node.js, Express など</td>
-      </tr>
-      <tr>
-        <th>Tool, MiddleWare</th>
-        <td>Git, PostgreSQL など</td>
-      </tr>
-      <tr>
-        <th>資格・免許</th>
-        <td>なし</td>
-      </tr>
-    </table>
+        /* 見出しのスタイル */
+        h1 {
+            color: #333;
+        }
 
-    <h3>Works</h3>
-    <p>アピールできる活動内容を書きましょう。</p>
-<a class="twitter-timeline" data-width="400" data-height="600" href="https://twitter.com/tsukamoto_naoki?ref_src=twsrc%5Etfw">Tweets by tsukamoto_naoki</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        /* メッセージ部分のスタイル */
+        #message {
+            font-size: 1.2em;
+            color: #007bff; /* 初期の文字色（青） */
+            transition: color 0.5s ease; /* 色が0.5秒かけて滑らかに変わるアニメーション */
+            min-height: 1.5em; /* テキストが変更されても高さが変わらないように */
+        }
 
-    <h3>Contact</h3>
-    <p>連絡先や SNS のアカウントを書きましょう。</p>
-    <ul>
-      <li><a href="mailto:naoki.tsukamoto.official@gmail.com">Mail</a></li>
-      <li><a href="https://twitter.com/tsukamoto_naoki">X(旧 Twitter)</a></li>
-    </ul>
+        /* ボタンのスタイル */
+        #changeButton {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: #007bff; /* ボタンの色（青） */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer; /* カーソルを乗せると指の形に変わる */
+            transition: background-color 0.3s ease;
+        }
 
-    <h3>History</h3>
-    <p>学歴、職歴、アルバイト、インターン経験など。</p>
-    <table>
-      <tr>
-        <th>2012年からフリージャーナリストとして活動を開始</th>
-    </table>
+        /* ボタンにカーソルを乗せたときのスタイル */
+        #changeButton:hover {
+            background-color: #0056b3; /* 少し濃い青に */
+        }
+    </style>
+</head>
+<body>
 
-     <h3>好きな動画</h3>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/0r1klxxlWOI?si=2MnvG_ZW4nFEpZuB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<h3>X</h3>
+    <div class="container">
+        <h1>シンプルなWebページ</h1>
+        <p id="message">下のボタンをクリックしてみてください。</p>
+        <button id="changeButton">色を変更</button>
+    </div>
 
-        <iframe src="https://openprocessing.org/sketch/2678183/embed/" width="400" height="400"></iframe>
-  </body>
+    <script>
+        // HTMLの要素を取得
+        const messageElement = document.getElementById('message');
+        const changeButtonElement = document.getElementById('changeButton');
+
+        // 状態を管理するための変数（false: 初期状態, true: 変更後）
+        let isChanged = false;
+
+        // ボタンがクリックされたときの処理を定義
+        changeButtonElement.addEventListener('click', function() {
+            // isChangedの状態によって処理を分岐
+            if (isChanged === false) {
+                // テキストと色を変更後の状態にする
+                messageElement.textContent = '色が変わりました！';
+                messageElement.style.color = '#dc3545'; // 赤色
+                
+                // 状態を「変更後」に更新
+                isChanged = true;
+            } else {
+                // テキストと色を初期状態に戻す
+                messageElement.textContent = '下のボタンをクリックしてみてください。';
+                messageElement.style.color = '#007bff'; // 青色
+
+                // 状態を「初期状態」に更新
+                isChanged = false;
+            }
+        });
+    </script>
+
+</body>
 </html>
