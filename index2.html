@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>シンプルなWebページ</title>
+    
+    <style>
+        /* ページ全体の基本的なスタイル */
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center; /* 水平方向の中央揃え */
+            align-items: center;    /* 垂直方向の中央揃え */
+            height: 100vh;          /* 画面の高さいっぱいに表示 */
+            margin: 0;
+            background-color: #f0f0f0; /* 背景色 */
+        }
+
+        /* コンテンツをまとめるコンテナのスタイル */
+        .container {
+            text-align: center;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* 見出しのスタイル */
+        h1 {
+            color: #333;
+        }
+
+        /* メッセージ部分のスタイル */
+        #message {
+            font-size: 1.2em;
+            color: #007bff; /* 初期の文字色（青） */
+            transition: color 0.5s ease; /* 色が0.5秒かけて滑らかに変わるアニメーション */
+            min-height: 1.5em; /* テキストが変更されても高さが変わらないように */
+        }
+
+        /* ボタンのスタイル */
+        #changeButton {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: #007bff; /* ボタンの色（青） */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer; /* カーソルを乗せると指の形に変わる */
+            transition: background-color 0.3s ease;
+        }
+
+        /* ボタンにカーソルを乗せたときのスタイル */
+        #changeButton:hover {
+            background-color: #0056b3; /* 少し濃い青に */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>シンプルなWebページ</h1>
+        <p id="message">下のボタンをクリックしてみてください。</p>
+        <button id="changeButton">色を変更</button>
+    </div>
+
+    <script>
+        // HTMLの要素を取得
+        const messageElement = document.getElementById('message');
+        const changeButtonElement = document.getElementById('changeButton');
+
+        // 状態を管理するための変数（false: 初期状態, true: 変更後）
+        let isChanged = false;
+
+        // ボタンがクリックされたときの処理を定義
+        changeButtonElement.addEventListener('click', function() {
+            // isChangedの状態によって処理を分岐
+            if (isChanged === false) {
+                // テキストと色を変更後の状態にする
+                messageElement.textContent = '色が変わりました！';
+                messageElement.style.color = '#dc3545'; // 赤色
+                
+                // 状態を「変更後」に更新
+                isChanged = true;
+            } else {
+                // テキストと色を初期状態に戻す
+                messageElement.textContent = '下のボタンをクリックしてみてください。';
+                messageElement.style.color = '#007bff'; // 青色
+
+                // 状態を「初期状態」に更新
+                isChanged = false;
+            }
+        });
+    </script>
+
+</body>
+</html>
